@@ -69,8 +69,8 @@ if __name__ == '__main__':
     det_num = 30
     C = 256
 
-    summary(model, [(B, track_num, T, C),
-                    (B, track_num, T, 4),
-                    (B, track_num, T),
-                    (B, det_num, C),
-                    (B, det_num, 4)])
+    summary(model, [(track_num, T, C),
+                    (track_num, T, 4),
+                    (track_num, T),
+                    (det_num, C),
+                    (det_num, 4)])
