@@ -76,9 +76,9 @@ if __name__ == '__main__':
                     (det_num, C),
                     (det_num, 4)])
 
-    macs, params = profile(model, inputs=(torch.randn((track_num, T, C)),
-                                          torch.randn((track_num, T, 4)),
-                                          torch.randn((track_num, T)),
-                                          torch.randn((det_num, C)),
-                                          torch.randn((det_num, 4)),
+    macs, params = profile(model, inputs=(torch.randn((1, track_num, T, C)),
+                                          torch.randn((1, track_num, T, 4)),
+                                          torch.randn((1, track_num, T)),
+                                          torch.randn((1, det_num, C)),
+                                          torch.randn((1, det_num, 4)),
                                           ))
