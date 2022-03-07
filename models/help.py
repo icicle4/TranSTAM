@@ -230,7 +230,7 @@ def least_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False)
         :param output: B * M, D
         :return:
     """
-    T, valid_num, C = batch_tracks_emb.size()
+    T, valid_num = batch_tracks_emb.size()[:2]
     
     if batch_track_mask is None:
         batch_track_mask = torch.ones((valid_num, T), device='cuda').long()
@@ -250,7 +250,8 @@ def mean_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False):
     :return:
     """
     
-    T, valid_num, C = batch_tracks_emb.size()
+    T, valid_num = batch_tracks_emb.size()[:2]
+    
     if batch_track_mask is None:
         batch_track_mask = torch.ones((valid_num, T), device='cuda').long()
     
