@@ -177,7 +177,7 @@ class PEMOT(nn.Module):
                                                                          M * N)
         
         sb_tgt = b_tgt[:, None, :]
-        sb_memory = memory[:, None, :]
+        sb_memory = memory[0][:, None, :]
         
         cross_relation_feature = self.decoder(sb_tgt, sb_memory,
                                               self_relative_matrix=det_edge_score,
