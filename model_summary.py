@@ -1,7 +1,8 @@
 import torch
 from torchvision import models
 from torchsummary import summary
-from thop import profile
+
+from ptflops import get_model_complexity_info
 import argparse
 
 from models.model_factory import build_model
@@ -76,9 +77,8 @@ if __name__ == '__main__':
                     (det_num, C),
                     (det_num, 4)])
 
-    macs, params = profile(model, inputs=(torch.randn((1, track_num, T, C)).cuda(),
-                                          torch.randn((1, track_num, T, 4)).cuda(),
-                                          torch.randn((1, track_num, T)).cuda(),
-                                          torch.randn((1, det_num, C)).cuda(),
-                                          torch.randn((1, det_num, 4)).cuda(),
-                                          ))
+    macs, params = get_model_complexity_info(model, ((track_num, T, C),
+                    (track_num, T, 4),
+                    (track_num, T),
+                    (det_num, C),
+                    (det_num, 4)))
