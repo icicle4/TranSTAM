@@ -86,8 +86,6 @@ class PEMOT(nn.Module):
 
         batch_det_emb = self.simple_embed(torch.flatten(batch_detection_app, end_dim=1)).view(B, N, -1)
 
-        temporal_tracks_mask = batch_track_mask.view(B * M, T)
-        
         if self.with_abs_pe:
             batch_tracks_emb = batch_tracks_app_emb + batch_tracks_spatial_emb
             batch_det_spatial_emb = self.spatial_embed(torch.flatten(batch_detection_bbox, end_dim=1)).view(B, N, -1)
@@ -108,23 +106,14 @@ class PEMOT(nn.Module):
         # T, B * M, D
         temporal_tracks_fea = batch_tracks_emb.view(T, B * M, -1)
         
-        least_tracks_spatial_emb = least_tracklet_features(batch_tracks_spatial_emb.reshape(T, B * M, -1),
-                                                         temporal_tracks_mask).view(B, M, -1)
+        least_tracks_spatial_emb = least_tracklet_features(batch_tracks_spatial_emb.reshape(T, B * M, -1)).view(B, M, -1)
         
-        avg_tracks_app_emb = mean_tracklet_features(batch_tracks_app_emb.reshape(T, B * M, -1),
-                                                    temporal_tracks_mask).view(B, M, -1)
+        avg_tracks_app_emb = mean_tracklet_features(batch_tracks_app_emb.reshape(T, B * M, -1)).view(B, M, -1)
 
-        least_batch_track_bbox = least_tracklet_features(batch_track_bbox.permute(2, 0, 1, 3).view(T, B * M, -1),
-                                                         temporal_tracks_mask).view(B, M, -1)
+        least_batch_track_bbox = least_tracklet_features(batch_track_bbox.permute(2, 0, 1, 3).view(T, B * M, -1)).view(B, M, -1)
 
-        # B * M, T
-        track_attn_mask = build_attn_mask(temporal_tracks_mask, T, self.head_num)
-        # T, B, M, D
-        
-        enhanced_tracks_fea = self.temporal_enhance(temporal_tracks_fea, track_attn_mask, track_edge_score).view(T, B,
-                                                                                                                 M, -1)
-        least_enhance_tracks_fea = least_tracklet_features(enhanced_tracks_fea.reshape(T, B * M, -1),
-                                                           temporal_tracks_mask).view(B, M, -1)
+        enhanced_tracks_fea = self.temporal_enhance(temporal_tracks_fea, None, track_edge_score).view(T, B,M, -1)
+        least_enhance_tracks_fea = least_tracklet_features(enhanced_tracks_fea.reshape(T, B * M, -1)).view(B, M, -1)
 
         least_batch_track_frame = least_tracklet_features(batch_track_frames.permute(2, 0, 1).view(T, B * M),
                                                           temporal_tracks_mask).view(B, M)

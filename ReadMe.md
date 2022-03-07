@@ -1,13 +1,10 @@
-#TrnasSTAM
+#TransSTAM
 
-------
 This is the code for the paper "Joint Spatial-Temporal and Appearance Modeling with Transformer for Multiple Object Tracking".
 
 ![img.png](images/framework.png)
 
 Paper: is still under review
-
-
 
 ## Usage - On MOT17
 

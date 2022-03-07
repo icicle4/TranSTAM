@@ -222,6 +222,7 @@ def build_attn_mask(source_mask: torch.Tensor, s: int, head_num:int):
     attn_mask = attn_mask.reshape(B * head_num, s, t)
     return attn_mask
 
+
 def least_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False):
     """
         :param batch_tracks_emb: (T, B * M, D)
@@ -229,11 +230,17 @@ def least_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False)
         :param output: B * M, D
         :return:
     """
+    T, valid_num, C = batch_tracks_emb.size()
+    
+    if batch_track_mask is None:
+        batch_track_mask = torch.ones((valid_num, T), device='cuda')
+    
     tmp_mask = batch_track_mask.permute(1, 0).contiguous()
     
     batch_last_idx = torch.sum(tmp_mask, dim=0) - 1
     ret = batch_tracks_emb[batch_last_idx, torch.arange(batch_tracks_emb.size(1))]
     return ret
+
 
 def mean_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False):
     """
@@ -242,6 +249,11 @@ def mean_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False):
     :param output: B * M, D
     :return:
     """
+    
+    T, valid_num, C = batch_tracks_emb.size()
+    if batch_track_mask is None:
+        batch_track_mask = torch.ones((valid_num, T), device='cuda')
+    
     tmp_mask = batch_track_mask.permute(1, 0).contiguous()
     masked_batch_tracks_emb = torch.einsum("tnd,tn->tnd", batch_tracks_emb, tmp_mask)
     valid_num = torch.sum(tmp_mask, dim=0).unsqueeze(dim=1)
