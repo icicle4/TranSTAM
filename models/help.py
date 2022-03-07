@@ -233,7 +233,7 @@ def least_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False)
     T, valid_num, C = batch_tracks_emb.size()
     
     if batch_track_mask is None:
-        batch_track_mask = torch.ones((valid_num, T), device='cuda')
+        batch_track_mask = torch.ones((valid_num, T), device='cuda').long()
     
     tmp_mask = batch_track_mask.permute(1, 0).contiguous()
     
@@ -252,7 +252,7 @@ def mean_tracklet_features(batch_tracks_emb, batch_track_mask, normalize=False):
     
     T, valid_num, C = batch_tracks_emb.size()
     if batch_track_mask is None:
-        batch_track_mask = torch.ones((valid_num, T), device='cuda')
+        batch_track_mask = torch.ones((valid_num, T), device='cuda').long()
     
     tmp_mask = batch_track_mask.permute(1, 0).contiguous()
     masked_batch_tracks_emb = torch.einsum("tnd,tn->tnd", batch_tracks_emb, tmp_mask)
