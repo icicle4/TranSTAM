@@ -1,6 +1,7 @@
 import torch
 from torchvision import models
 from torchsummary import summary
+from thop import profile
 import argparse
 
 from models.model_factory import build_model
@@ -74,3 +75,10 @@ if __name__ == '__main__':
                     (track_num, T),
                     (det_num, C),
                     (det_num, 4)])
+
+    macs, params = profile(model, inputs=(torch.randn((track_num, T, C)),
+                                          torch.randn((track_num, T, 4)),
+                                          torch.randn((track_num, T)),
+                                          torch.randn((det_num, C)),
+                                          torch.randn((det_num, 4)),
+                                          ))

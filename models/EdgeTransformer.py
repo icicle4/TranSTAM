@@ -25,12 +25,12 @@ class TransformerDecoderEdge(Module):
 
     __constants__ = ['norm']
 
-    def __init__(self, decoder_layer, num_layers, norm=None, viz_weight=False):
+    def __init__(self, decoder_layer, num_layers, norm=None):
         super(TransformerDecoderEdge, self).__init__()
         self.layers = _get_clones(decoder_layer, num_layers)
         self.num_layers = num_layers
         self.norm = norm
-        self.viz_weight = viz_weight
+        
 
     def forward(self, tgt: Tensor, memory: Tensor, tgt_mask: Optional[Tensor] = None, restrict_tgt: Optional[Tensor]=None,
                 memory_mask: Optional[Tensor] = None, tgt_key_padding_mask: Optional[Tensor] = None,
@@ -38,57 +38,28 @@ class TransformerDecoderEdge(Module):
                 cross_relative_matrix: Optional[Tensor]=None, relative_style = "add"):
         output = tgt
 
-        if self.viz_weight:
-            
-            self_attn_weigths = []
-            cross_attn_weights = []
-            
-            self_attns = []
-            cross_attns = []
-            
-            layer_outputs = []
-            
-            for i, mod in enumerate(self.layers):
-                output, self_attn_weight, cross_attn_weight, self_attn, cross_attn = mod(output, memory, tgt_mask=tgt_mask,
+        for mod in self.layers:
+            if restrict_tgt is None:
+                output = mod(output, memory, tgt_mask=tgt_mask,
                              memory_mask=memory_mask,
                              tgt_key_padding_mask=tgt_key_padding_mask,
                              memory_key_padding_mask=memory_key_padding_mask,
                              self_relative_matrix = self_relative_matrix,
                              cross_relative_matrix = cross_relative_matrix,
                              relative_style = relative_style)
+            else:
+                output = mod(output, memory, tgt_mask=tgt_mask,
+                             memory_mask=memory_mask, restrict_tgt=restrict_tgt,
+                             tgt_key_padding_mask=tgt_key_padding_mask,
+                             memory_key_padding_mask=memory_key_padding_mask,
+                             self_relative_matrix=self_relative_matrix,
+                             cross_relative_matrix=cross_relative_matrix,
+                             relative_style=relative_style)
                 
-                self_attn_weigths.append(self_attn_weight)
-                cross_attn_weights.append(cross_attn_weight)
-                self_attns.append(self_attn)
-                cross_attns.append(cross_attn)
-                
-                layer_outputs.append(output.clone())
-                
-            return output, self_attn_weigths, cross_attn_weights, self_attns, cross_attns, layer_outputs
-        
-        else:
-            for mod in self.layers:
-                if restrict_tgt is None:
-                    output = mod(output, memory, tgt_mask=tgt_mask,
-                                 memory_mask=memory_mask,
-                                 tgt_key_padding_mask=tgt_key_padding_mask,
-                                 memory_key_padding_mask=memory_key_padding_mask,
-                                 self_relative_matrix = self_relative_matrix,
-                                 cross_relative_matrix = cross_relative_matrix,
-                                 relative_style = relative_style)
-                else:
-                    output = mod(output, memory, tgt_mask=tgt_mask,
-                                 memory_mask=memory_mask, restrict_tgt=restrict_tgt,
-                                 tgt_key_padding_mask=tgt_key_padding_mask,
-                                 memory_key_padding_mask=memory_key_padding_mask,
-                                 self_relative_matrix=self_relative_matrix,
-                                 cross_relative_matrix=cross_relative_matrix,
-                                 relative_style=relative_style)
-                    
-            if self.norm is not None:
-                output = self.norm(output)
+        if self.norm is not None:
+            output = self.norm(output)
 
-            return output
+        return output
 
 
 class TransformerEncoderEdge(Module):
@@ -718,10 +689,7 @@ class EdgeTransformerDecoderLayer(Module):
         tgt = tgt + self.dropout3(tgt2)
         tgt = self.norm3(tgt)
         
-        if self.viz_weight:
-            return tgt, self_attn_weight, cross_attn_weight, self_attn, cross_attn
-        else:
-            return tgt
+        return tgt
 
 
 def _get_activation_fn(activation):
