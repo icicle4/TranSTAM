@@ -27,6 +27,8 @@ cp -r Split3/* Split23/
 cp -r Split3/* Split13/
 cp -r Split1/* Split13/
 
+cd /root/transstam || exit
+
 python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split12 --hdf5_path ${ROOTDIR}/train_Split12.hdf5
 
 python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split13 --hdf5_path ${ROOTDIR}/train_Split13.hdf5
