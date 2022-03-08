@@ -27,14 +27,14 @@ cp -r Split3/* Split23/
 cp -r Split3/* Split13/
 cp -r Split1/* Split13/
 
-python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/pca_matched_detection/Split12 --hdf5_path ${ROOTDIR}/train_Split12.hdf5
+python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split12 --hdf5_path ${ROOTDIR}/train_Split12.hdf5
 
-python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/pca_matched_detection/Split13 --hdf5_path ${ROOTDIR}/train_Split13.hdf5
+python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split13 --hdf5_path ${ROOTDIR}/train_Split13.hdf5
 
-python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/pca_matched_detection/Split23 --hdf5_path ${ROOTDIR}/train_Split23.hdf5
+python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split23 --hdf5_path ${ROOTDIR}/train_Split23.hdf5
 
-python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/pca_matched_detection/Split1 --hdf5_path ${ROOTDIR}/eval_Split1.hdf5
+python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split1 --hdf5_path ${ROOTDIR}/eval_Split1.hdf5
 
-python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/pca_matched_detection/Split2 --hdf5_path ${ROOTDIR}/eval_Split2.hdf5
+python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split2 --hdf5_path ${ROOTDIR}/eval_Split2.hdf5
 
-python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/pca_matched_detection/Split3 --hdf5_path ${ROOTDIR}/eval_Split3.hdf5
+python datasets/pre_load_static_dataset.py --dataset_dir ${ROOTDIR}/Split3 --hdf5_path ${ROOTDIR}/eval_Split3.hdf5

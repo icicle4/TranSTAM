@@ -9,18 +9,15 @@ ABSPE=$6
 RELATIVEPE=$7
 ASSIGNPE=$8
 ASPESTYLE=9
-ROOTDIR=${10}
-TRACKRESDIR=${11}
-MOT17DIR=${12}
-EVALUATIONRESDIR=${13}
+TRACKRESDIR=${10}
+EVALUATIONRESDIR=${11}
+
+ROOTDIR=/root/transstam/data/TMOH_17_pbs_pca_matched_th0.6
+MOT17DIR=/root/transstam/data/MOT17/
 
 CUDANUM=0
 TRACKHISLEN=150
 EPOCH=10
-
-#TRACKRESDIR=/ssd/yqfeng/research/datasets/MOT_17_20_mix/test_res
-#MOT17DIR=/ssd/yqfeng/research/datasets/MOT17
-#EVALUATIONRESDIR=/root/work/edgetransformerquik/evaluation_reports
 
 DATASETDIR=${ROOTDIR}/pca_detection/train/
 
