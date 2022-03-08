@@ -42,7 +42,7 @@ def collate_fn(batch):
 
 class InferenceMachine:
     def __init__(self, model, track_len, output_dir,  app_feature_dim, pos_feature_dim,
-                 match_threshold=0.4, debug=False, drop_simple_case=False, cache_window=20,
+                 match_threshold=0.4, drop_simple_case=False, cache_window=20,
                  impossible_threshold=3.0
                  ):
         
@@ -54,8 +54,6 @@ class InferenceMachine:
             print('Init impossible tracker')
             self.drop_simple_case = drop_simple_case
             self.impossible_tracker = StrictSimpleCaseTracker.ImpossibleTracker(impossible_threshold)
-
-        self.debug = debug
 
         self.app_feature_dim = app_feature_dim
         self.pos_feature_dim = pos_feature_dim

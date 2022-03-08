@@ -100,7 +100,6 @@ def main(args):
                                          output_dir=args.output_dir,
                                          app_feature_dim=args.app_dim,
                                          pos_feature_dim=args.pos_dim,
-                                         debug=args.debug,
                                          match_threshold=args.match_threshold,
                                          drop_simple_case=args.drop_simple_case,
                                          cache_window=args.cache_window,
