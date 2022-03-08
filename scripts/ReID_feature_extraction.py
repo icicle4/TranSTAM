@@ -119,12 +119,9 @@ if __name__ == '__main__':
                         box = bbox[0]
                         det_score = bbox[1]
                         x,y,w,h = box
-                        # skip the case that the box is not in the image
 
                         img = frame[int(max(0, round(y))):int(round(y + h)), int(max(0, round(x))):int(round(x + w)):, ]
-                        # img = img.to(device)
                         if 0 in img.shape:
-                            print('error')
                             continue
 
                         feat = demo.run_on_image(img)[0].numpy().tolist()

@@ -132,8 +132,7 @@ if __name__ == '__main__':
         os.makedirs(args.new_det_box_dir)
 
     pb_files = list(list_files(args.old_det_box_dir, validExts=".pb"))
-
-    pb_files = sorted(list(list_files(pb_files)))
+    pb_files = sorted(pb_files)
 
     for key, value in groupby(pb_files, key=lambda x: os.path.basename(x)[:8]
                                             if "_" in os.path.basename(x)
