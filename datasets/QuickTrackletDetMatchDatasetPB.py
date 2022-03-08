@@ -102,15 +102,7 @@ class TrackDetMatchDatasetPublic(Dataset):
                 detection = normalize_det_xywh_with_video_wh(detection, video_width, video_height)
                 tracklets[track_id][f] = detection
 
-        max_cache_track_num = 150
         total_tracklets_ids = list(tracklets.keys())
-
-        if len(tracklets) > max_cache_track_num:
-            tracklet_ed_frames = {track_id: max(tracklets[track_id].keys()) for track_id in tracklets.keys()}
-            sorted_track_ids = [k for k, v in sorted(tracklet_ed_frames.items(), key=lambda item: item[1])]
-            remain_track_ids = sorted_track_ids[-max_cache_track_num:]
-            total_tracklets_ids = remain_track_ids
-        
         sample_detection_frame = end_frame
 
         detections = defaultdict()
@@ -153,7 +145,7 @@ class TrackDetMatchDatasetPublic(Dataset):
                     label_mask[0, i, j] = True
             
             impossible_mask = torch.logical_or(label_mask, impossible_mask)
-            print('ratio', torch.sum(impossible_mask) / torch.sum(torch.ones_like(impossible_mask)))
+            
         else:
             impossible_mask = None
             
@@ -252,10 +244,12 @@ if __name__ == '__main__':
     print("Build dataset and loop one epoch cost time: {}".format(time2 - time1))
 
     print('total track num: {}, avg track num per graph: {}, max track num: {}'.format(tracklet_num_avg_metric.total,
-                                                                    tracklet_num_avg_metric.avg, tracklet_num_avg_metric.max))
+                                                                                       tracklet_num_avg_metric.avg,
+                                                                                       tracklet_num_avg_metric.max))
     
     print('total det num: {}, avg det num per graph: {}, max det num: {}'.format(det_num_avg_metric.total,
-                                                                det_num_avg_metric.avg, det_num_avg_metric.max))
+                                                                                 det_num_avg_metric.avg,
+                                                                                 det_num_avg_metric.max))
 
     print('raw track num: {}, avg track num per graph: {}, max track num: {}'.format(
         raw_track_num_avg_metric.total,
