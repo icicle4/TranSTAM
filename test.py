@@ -29,7 +29,7 @@ def get_args_parser():
     # * Transformer
     parser.add_argument('--track_history_len', default=50, type=int,
                         help="Number of max history lenght of tracklets, equal to sample tracklet region length")
-    parser.add_argument('--cache_window_size', default=20, type=int)
+    parser.add_argument('--cache_window', default=20, type=int)
     
     parser.add_argument('--enc_layer_num', default=2, type=int,
                         help="Number of encoding layers in the transformer")
