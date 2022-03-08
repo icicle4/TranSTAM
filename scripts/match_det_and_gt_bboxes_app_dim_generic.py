@@ -72,13 +72,6 @@ def match_track_id_by_iou(det_res, gt_res, matcher, part_detection_pbs):
         matched_pair = matcher(gt_bboxes, det_bboxes)
 
         for gt_index, det_index in matched_pair:
-            print('match det-{} & gt-{} in frame {}, det bbox is {}, gt bbox is {}'.format(
-                det_bboxes[det_index]['detection_id'],
-                gt_bboxes[gt_index]['track_id'],
-                frame,
-                det_bboxes[det_index]['bbox'],
-                gt_bboxes[gt_index]['bbox']
-            ))
             det_bboxes[det_index]["track_id"] = gt_bboxes[gt_index]["track_id"]
 
         for det in det_bboxes:
