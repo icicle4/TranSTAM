@@ -24,7 +24,7 @@ def get_parser():
     return parser
 
 def find_video_name(pb_file_name):
-    return os.path.basename(pb_file_name)[:8]
+    return os.path.basename(pb_file_name).split('.')[0]
 
 
 def find_part_pbs(video_name, pb_file_names):
