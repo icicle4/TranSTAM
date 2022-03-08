@@ -5,7 +5,6 @@ import pdb
 
 import torch
 from utils import misc as utils
-from models.explainable_viz import viz_mix_feature_and_cross_relation_matrix
 
 
 def to_cuda(samples, device):
