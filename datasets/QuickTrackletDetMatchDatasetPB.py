@@ -1,16 +1,13 @@
-import torch
-from torch.utils.data import Dataset, DataLoader
-import random
+
 
 import os
 import sys
-import pdb
+from torch.utils.data import Dataset
+import random
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.abspath(__file__), "../..")))
 
-
 from datasets.memmory_bank_pb import MemoryBank
-import tqdm
 from datasets.warp_tracklet_and_detection_tensor import *
 from models.StrictSimpleCaseTracker import ImpossibleTracker
 from utils.metrics import AvgMetric

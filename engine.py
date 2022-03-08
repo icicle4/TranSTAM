@@ -122,17 +122,3 @@ def evaluate(model: torch.nn.Module, criterion: torch.nn.Module,
 
     return to_log_metric_logger
 
-
-@torch.no_grad()
-def feature_vis(model: torch.nn.Module, data_loader: Iterable, viz_dir):
-    
-    model.eval()
-    data_loader = iter(data_loader)
-    
-    for _ in range(len(data_loader)):
-        samples = next(data_loader)
-        outputs = model(samples, stage="test")
-        viz_mix_feature_and_cross_relation_matrix(outputs, samples["labels"], viz_dir)
-        break
-    
-
