@@ -37,7 +37,7 @@ python3 -m torch.distributed.launch --master_port 29503 --nproc_per_node=8 --use
 CUDA_VISIBLE_DEVICES=${CUDANUM} python test.py --enc_layer_num ${LAYERNUM} --dec_layer_num ${LAYERNUM} --app_dim 256 --pos_dim 4 \
   --track_history_len ${TRACKHISLEN} --dim_feedforward 1024 --hidden_dim 256 --dropout 0.0 --nheads 8 --drop_simple_case \
   --to_inference_pb_dir ${DATASETDIR}/Split3 --with_abs_pe ${ABSPE} --with_relative_pe ${RELATIVEPE} --with_assignment_pe ${ASSIGNPE} \
-  --output_dir ${TRACKRESDIR}_${ABLATIONTAG} --resume "./output_${ABLATIONTAG}_Split12/best.pth" --match_threshold 0.2 --model ${MODELNAME} \
+  --output_dir ${TRACKRESDIR}_${ABLATIONTAG} --resume "./output_${ABLATIONTAG}_Split12/checkpoint0009.pth" --match_threshold 0.2 --model ${MODELNAME} \
   --aspe_style ${ASPESTYLE}
 
 python3 -m torch.distributed.launch --nproc_per_node=8 --master_port 29503 --use_env train.py --enc_layer_num ${LAYERNUM} \
@@ -50,7 +50,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 --master_port 29503 --use
 CUDA_VISIBLE_DEVICES=${CUDANUM} python test.py --enc_layer_num ${LAYERNUM} --dec_layer_num ${LAYERNUM} --app_dim 256 --pos_dim 4 \
   --track_history_len ${TRACKHISLEN} --dim_feedforward 1024 --hidden_dim 256 --dropout 0.0 --nheads 8 --drop_simple_case \
   --to_inference_pb_dir ${DATASETDIR}/Split1 --with_abs_pe ${ABSPE} --with_relative_pe ${RELATIVEPE} --with_assignment_pe ${ASSIGNPE} \
-  --output_dir ${TRACKRESDIR}_${ABLATIONTAG} --resume "./output_${ABLATIONTAG}_Split23/best.pth" \
+  --output_dir ${TRACKRESDIR}_${ABLATIONTAG} --resume "./output_${ABLATIONTAG}_Split23/checkpoint0009.pth" \
   --match_threshold 0.2 --model ${MODELNAME} --aspe_style ${ASPESTYLE}
 
 python3 -m torch.distributed.launch --nproc_per_node=8 --master_port 29503 --use_env train.py --enc_layer_num ${LAYERNUM} \
@@ -63,7 +63,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 --master_port 29503 --use
 CUDA_VISIBLE_DEVICES=${CUDANUM} python test.py --enc_layer_num ${LAYERNUM} --dec_layer_num ${LAYERNUM} --app_dim 256 --pos_dim 4 \
   --track_history_len ${TRACKHISLEN} --dim_feedforward 1024 --hidden_dim 256 --dropout 0.0 --nheads 8 --drop_simple_case \
   --to_inference_pb_dir ${DATASETDIR}/Split2 --with_abs_pe ${ABSPE} --with_relative_pe ${RELATIVEPE} --with_assignment_pe ${ASSIGNPE} \
-  --output_dir ${TRACKRESDIR}_${ABLATIONTAG} --resume "./output_${ABLATIONTAG}_Split13/best.pth" \
+  --output_dir ${TRACKRESDIR}_${ABLATIONTAG} --resume "./output_${ABLATIONTAG}_Split13/checkpoint0009.pth" \
   --match_threshold 0.2 --model ${MODELNAME} --aspe_style ${ASPESTYLE}
 
 echo "------------- Evaluation Results ----------"

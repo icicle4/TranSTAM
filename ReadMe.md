@@ -46,7 +46,7 @@ python scripts/reduce_pb_reid_dim_by_pca.py --old_det_box_dir ./data/TMOH_17_pbs
 python scripts/match_det_and_gt_bboxes_app_dim_generic.py --det_box_dir ./data/TMOH_17_pbs_pca/ --dataset_dir ./data/MOT17/ --iou_threshold 0.6 --output_dir ./data/TMOH_17_pbs_pca_matched_th0.6
 ```
 
-5.  To train model [optional]
+5.  To train model [optional] [8 GPU need]
 
 ```shell
 [optional]
@@ -56,7 +56,7 @@ python datasets/pre_load_static_dataset.py --dataset_dir ./data/TMOH_17_pbs_pca_
 bash scripts/train.sh "TransSTAM" trans_stam 2 ./data/TMOH_17_pbs_pca_matched_th0.6_imth_3.0.hdf5
 ```
 
-6. To ablation model [optional]
+6. To ablation model [optional] [8 GPU need]
 
 ```shell
 # build datasets for ablation study
@@ -69,7 +69,7 @@ bash scripts/ablation.sh "trans_stam" ${tag} ${layer_num} ${cache_window} ${samp
 bash scripts/ablation.sh "trans_stam" "baseline" 2 20 50 "with_abs_pe" "with_relative_pe" "with_assignment_pe" "diff" ${TRACKRESDIR} ${EVALUATIONRESDIR}
 
 ```
-7. Inference with our trained model
+7. Inference with our trained model [1 GPU need]
 ```shell
 bash scripts/inference_with_trained_model.sh
 ```
