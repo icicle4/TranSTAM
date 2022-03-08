@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-wget -P data https://vision.in.tum.de/webshare/u/brasoand/mot_neural_solver/prepr_det_files.zip
-
-
-unzip -d data data/prepr_det_files.zip
-rm data/prepr_det_files.zip
+cd ./data || exit
+curl https://transfer.sh/c8gGQg/prepare_detections.zip -o prepare_detections.zip
+unzip prepare_detections.zip

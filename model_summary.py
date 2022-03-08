@@ -76,9 +76,3 @@ if __name__ == '__main__':
                     (track_num, T),
                     (det_num, C),
                     (det_num, 4)])
-
-    macs, params = get_model_complexity_info(model, ((track_num, T, C),
-                    (track_num, T, 4),
-                    (track_num, T),
-                    (det_num, C),
-                    (det_num, 4)))
