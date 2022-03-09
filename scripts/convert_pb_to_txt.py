@@ -12,7 +12,7 @@ from imutils.paths import list_files
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--det_box_dir", type=str, help="dir of det bboxes pb files")
-    parser.add_argument("--output_dir", type=str, help="dir of MOT dataset")
+    parser.add_argument("--output_dir", type=str, help="dir of generate txt files dir")
     return parser
 
 

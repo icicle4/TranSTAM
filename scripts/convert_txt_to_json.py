@@ -20,8 +20,8 @@ def convert_txt_to_json(txt_file, json_file):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--predict_dir", type=str, required=True, help="predict directory")
-    parser.add_argument('--out_path', type=str, required=True, help="output directory")
+    parser.add_argument("--predict_dir", type=str, required=True, help="predict txt directory")
+    parser.add_argument('--out_path', type=str, required=True, help="output json files directory")
     args = parser.parse_args()
 
     if not os.path.exists(args.out_path):
