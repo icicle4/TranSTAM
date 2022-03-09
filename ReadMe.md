@@ -1,4 +1,4 @@
-#TransSTAM
+# TransSTAM
 
 This is the code for the paper "Joint Spatial-Temporal and Appearance Modeling with Transformer for Multiple Object Tracking".
 
