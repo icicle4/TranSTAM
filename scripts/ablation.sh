@@ -12,8 +12,8 @@ ASPESTYLE=${9}
 TRACKRESDIR=${10}
 EVALUATIONRESDIR=${11}
 
-ROOTDIR=/root/transstam/data/TMOH_17_pbs_pca_matched_th0.6
-MOT17DIR=/root/transstam/data/MOT17/
+ROOTDIR=/root/transtam/data/TMOH_17_pbs_pca_matched_th0.6
+MOT17DIR=/root/transtam/data/MOT17/
 
 CUDANUM=0
 TRACKHISLEN=150

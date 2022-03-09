@@ -11,7 +11,7 @@ from models.model_factory import build_model
 def get_args_parser():
     parser = argparse.ArgumentParser('Temporal Enhance Temporal', add_help=False)
     
-    parser.add_argument('--model', default="trans_stam", type=str)
+    parser.add_argument('--model', default="tran_stam", type=str)
     
     parser.add_argument('--app_dim', default=256, type=int, help="Dimension of Appearance Feature")
     parser.add_argument('--pos_dim', default=4, type=int, help="Dimension of Pos Feature")
@@ -48,13 +48,13 @@ def get_args_parser():
 
 if __name__ == '__main__':
     
-    parser = argparse.ArgumentParser('TransSTAM inference script', parents=[get_args_parser()])
+    parser = argparse.ArgumentParser('TranSTAM inference script', parents=[get_args_parser()])
     args = parser.parse_args()
     
-    trans_stam_model, criterion = build_model(args)
+    tran_stam_model, criterion = build_model(args)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = trans_stam_model.to(device)
+    model = tran_stam_model.to(device)
 
     """
             :param batch_track_app: B, M, T, C

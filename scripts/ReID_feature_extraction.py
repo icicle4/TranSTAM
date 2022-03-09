@@ -17,7 +17,7 @@ import time
 sys.path.append(os.path.join(os.path.dirname(__file__), "../proto/"))
 import detection_results_pb2
 
-sys.path.insert(0, '/root/transstam/fast-reid/')
+sys.path.insert(0, '/root/transtam/fast-reid/')
 import fastreid
 from fastreid.config import get_cfg
 from fastreid.utils.file_io import PathManager

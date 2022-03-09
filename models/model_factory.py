@@ -1,6 +1,6 @@
 import torch
 
-from models import TransSTAM, TransSTAMCal
+from models import TranSTAM, TranSTAMCal
 
 from models.loss import SetCriterion, PosNegBalanceListCriterion
 
@@ -8,8 +8,8 @@ from models.loss import SetCriterion, PosNegBalanceListCriterion
 def build_model(args):
     criterion = SetCriterion()
     
-    if args.model == "trans_stam":
-        model = TransSTAM.PEMOT(
+    if args.model == "tran_stam":
+        model = TranSTAM.PEMOT(
             history_window_size=args.track_history_len,
             track_valid_size=args.cache_window_size,
             appearance_feature_dim=args.app_dim,
@@ -26,8 +26,8 @@ def build_model(args):
             aspe_style=args.aspe_style
         )
         criterion = PosNegBalanceListCriterion()
-    elif args.model == "trans_stam_cal":
-        model = TransSTAMCal.PEMOT(
+    elif args.model == "tran_stam_cal":
+        model = TranSTAMCal.PEMOT(
             history_window_size=args.track_history_len,
             track_valid_size=args.cache_window_size,
             appearance_feature_dim=args.app_dim,

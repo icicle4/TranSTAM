@@ -1,7 +1,7 @@
 _BASE_: "Base-bagtricks.yml"
 
 MODEL:
-    WEIGHTS: "/root/transstam/data/model_weights/reid_model_wo_MOT17_traindata.pth"
+    WEIGHTS: "/root/transtam/data/model_weights/reid_model_wo_MOT17_traindata.pth"
     FREEZE_LAYERS: ["backbone"]
     DEVICE: "cuda:3"
 
