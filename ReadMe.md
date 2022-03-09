@@ -29,6 +29,7 @@ git clone git@github.com:icicle4/TransSTAM.git transstam
 3. Download data we provide and put the data under path /root/transstam/data
 
  - Url: https://pan.baidu.com/s/1Q8Q6m6PnJhqEjMvU473hhA Code: u684 
+ - if you just want to inference the test dataset, only need to download data/model_weights and data/TMOH_17_pbs_pca
 
 4. Prepare data for train and ablation study [optional]
 ```shell
