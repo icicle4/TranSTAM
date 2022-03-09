@@ -23,7 +23,7 @@ docker exec -it TransSTAM_work_env bash
 2. Clone the enter this repository
 ```shell
 cd /root
-git clone 
+git clone git@github.com:icicle4/TransSTAM.git transstam
 ```
 
 3. Download data we provide and put the data under path /root/transstam/data
