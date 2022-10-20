@@ -4,7 +4,7 @@ This is the code for the paper "Joint Spatial-Temporal and Appearance Modeling w
 
 ![img.png](images/framework.png)
 
-Paper: is still under review
+Paper: https://arxiv.org/pdf/2205.15495.pdf
 
 Env: Linux only & GPU only
 
